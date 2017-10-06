@@ -1,0 +1,84 @@
+import sys
+import time
+import datetime
+
+oldlist=[]
+oldlist1=[]
+newlist=[]
+d={}
+def ctf(temp):
+    newf= (temp*(1.8))+32.0
+    print('The temperature in Fahreinheit is '+str(newf)+'F\n')
+    ts=datetime.datetime.now()
+    d={'From':'Celsius','To':'Fahreinheit','From_value':temp,'To_value':newf,'Time_of_conversion':ts}
+    oldlist.append(d)
+    return
+
+def ftc(temp):
+    newc=((temp-32.0))/1.8
+    print('The temperature in celsius is '+str(newc)+'C\n')
+    ts=datetime.datetime.now()
+    d={'From':'Fahreinheit','To':'Celsius','From_value':temp,'To_value':newc,'Time_of_conversion':ts}
+    oldlist.append(d)
+    return
+
+while(1):
+    
+    ch=int(raw_input("enter \n 1: convert celsius to fahreinheit \n 2: convert fahreinheit to celsius\n "))
+    temp=int(raw_input("enter the temperature\n"))
+
+    if ch==1:
+        ctf(temp)
+        
+    elif ch==2:
+        ftc(temp)
+
+    else:
+        print("Wrong input\n") 
+    ch=raw_input("\nWish to continue Y/N\n")
+    
+    if ch is 'N':
+        break
+
+k=0
+for i in reversed(oldlist):
+	if k==5:
+		break
+	oldlist1.append(i)
+	k=k+1
+
+while(1):
+	print("\n Display Menu\n")
+	print("\n Enter")
+	print("\n 1. Display in sorted 'from' value order")
+	print("\n 2. Display in sorted 'to'   value order")
+	print("\n 3. Display in sorted 'time of conversion order")
+	print("\n 4. Exit\n")
+	x=int(raw_input())
+
+	if x==4:
+		sys.exit()
+	elif x==1:
+		newlist=sorted(oldlist1,key=lambda k:k['From_value'])
+	elif x==2:
+		newlist=sorted(oldlist1,key=lambda k:k['To_value'])
+	elif x==3:
+		newlist=sorted(oldlist1,key=lambda k:k['Time_of_conversion'])
+	else:
+		print("wrong input\n")
+
+	for j in  newlist:
+		print "----------------------------------------------------------"
+		print "From:\t\t",j['From']
+		print "To:\t\t",j['To']
+		print "From_value:\t\t",j['From_value']
+		print "To_value:\t\t",j['To_value']
+		print "Time of conversion:\t\t",j['Time_of_conversion']
+        print "----------------------------------------------------------"
+     
+        
+
+
+
+
+
