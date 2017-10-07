@@ -1,12 +1,18 @@
+#A temperature converter program which is menu driven. Each such conversion logic should be defined in different functions.
+#The program should call the respective function  based on user's requirement. The program should run as long as the user wishes so.
+#Provide an option to view the last 5 conversions stored as list of tuples with attributes - from unit, to unit, from value, to value,date and time of conversion,sorted by user's choice(from-value, to-value, date).
+
+
 import sys
 import time
 import datetime
 
-oldlist=[]
-oldlist1=[]
-newlist=[]
-d={}
-def ctf(temp):
+oldlist=[]		#list
+oldlist1=[]		#list
+newlist=[]		#list
+d={}			#dictionary
+
+def ctf(temp):		#function to convert  celsius to fahreinheit
     newf= (temp*(1.8))+32.0
     print('The temperature in Fahreinheit is '+str(newf)+'F\n')
     ts=datetime.datetime.now()
@@ -14,7 +20,7 @@ def ctf(temp):
     oldlist.append(d)
     return
 
-def ftc(temp):
+def ftc(temp):		#function to convert fahreinheit to celsius
     newc=((temp-32.0))/1.8
     print('The temperature in celsius is '+str(newc)+'C\n')
     ts=datetime.datetime.now()
@@ -22,7 +28,7 @@ def ftc(temp):
     oldlist.append(d)
     return
 
-while(1):
+while(1):		
     
     ch=int(raw_input("enter \n 1: convert celsius to fahreinheit \n 2: convert fahreinheit to celsius\n "))
     temp=int(raw_input("enter the temperature\n"))
@@ -41,7 +47,7 @@ while(1):
         break
 
 k=0
-for i in reversed(oldlist):
+for i in reversed(oldlist):	#storing the last 5 conversion in another list
 	if k==5:
 		break
 	oldlist1.append(i)
@@ -74,7 +80,7 @@ while(1):
 		print "From_value:\t\t",j['From_value']
 		print "To_value:\t\t",j['To_value']
 		print "Time of conversion:\t\t",j['Time_of_conversion']
-        print "----------------------------------------------------------"
+        	print "----------------------------------------------------------"
      
         
 
